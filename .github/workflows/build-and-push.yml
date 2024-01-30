@@ -34,13 +34,3 @@ jobs:
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
-        run: |
-          docker buildx create --use
-          docker buildx build \
-            --platform linux/amd64,linux/arm64 \
-            -t docknicki/tetris-react:${{ steps.extract_tag.outputs.tag }} \
-            -t docknicki/tetris-react:latest \
-            .
-
-          docker push docknicki/tetris-react:${{ steps.extract_tag.outputs.tag }}
-          docker push docknicki/tetris-react:latest
